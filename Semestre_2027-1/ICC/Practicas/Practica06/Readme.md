@@ -6,7 +6,12 @@ comparar ambos o cambiar el monto, solo que tiene límite de operaciones y manej
 PiInteractivo.java: Calcula una aproximación del valor de pi  usando el método Monte Carlo que es
 una simulación de lanzamiento de dardos a un círculo.
 ------Comandos para compilar y ejecutar-----
-
+javac -d bin src/BinarioInteractivo.java
+javac -d bin src/CabanaDelMisterio.java
+javac -d bin src/PiInteractivo.java
+java -cp bin BinarioInteractivo
+java -cp bin CabanaDelMisterio
+java -cp bin PiInteractivo
 ------Ejemplos-----
 1.Ingresa el numero que quieras convertir a binario: 13
 El numero 13 en binario es 1101
