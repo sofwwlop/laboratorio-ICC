@@ -52,6 +52,7 @@ int tasaAplicada = 0;
 		clasificacion = "Riesgoso";
 	    tasaAplicada = tasaBase + 3;
 	}
+	
 	int plazoMeses = (int) Math.round(plazoAños * 12);
     double interesSimple = precioLaptop * (tasaAplicada / 100.0) * plazoAños;
     double pagoTotal = precioLaptop + interesSimple;
