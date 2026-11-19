@@ -4,8 +4,8 @@
  * @author [Tu Nombre Completo]
  * @version 1.0
  */
-public class Punto {
-
+public class Punto 
+{
     // Practica 8 (Mini-Lab): Metodos, Mensajes y Objetos como Parametros.
     // Completa las partes marcados con comentarios 'POR HACER'.
 
@@ -40,11 +40,11 @@ public class Punto {
         return y;
     }
     //set
-    public void setX ()
+    public void setX (double x)
     {
         this.x = x;
     }
-    public void setY ()
+    public void setY (double y)
     {
         this.y = y;
     }
@@ -60,7 +60,7 @@ public class Punto {
      */
     public void desplazar(double deltaX, double deltaY) 
     {
-        this.x += deltaXx;
+        this.x += deltaX;
         this.y += deltaY;
     }
 
@@ -77,7 +77,9 @@ public class Punto {
         {
             return -1.0;
         }
-        return Math.sqrt((otroPunto.x - this.x) * (otroPunto.x - this.x) + (otroPunto.y - this.y) * (otroPunto.y - this.y));
+        double dx = otroPunto.x - this.x;
+        double dy = otroPunto.y - this.y;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     /**
@@ -93,8 +95,8 @@ public class Punto {
         {
             return null;
         }
-        xm = (punto.x + this.x)/2.0;
-        ym = (punto.y + this.y)/2.0;
+        double xm = (otro.x + this.x)/2.0;
+        double ym = (otro.y + this.y)/2.0;
         return new Punto(xm, ym);
     }
 
@@ -139,9 +141,21 @@ public class Punto {
      * @param p3 Tercer punto a evaluar.
      * @return true si los tres puntos estan alineados; false en caso contrario (o si alguno es null).
      */
-    public boolean estanAlineados(Punto p2, Punto p3) {
-        // POR HACER: Valida que p2 y p3 no sean null.
-        // Evalua la condicion de colinealidad
+    public boolean estanAlineados(Punto p2, Punto p3) 
+    {
+        if (p2 == null || p3 == null)
+        {
+            return false;
+        }
+        double determinante = this.x * (p2.y - p3.y) + p2.x * (p3.y - this.y) + p3.x * (this.y - p2.y);  
+        if (determinante == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -149,7 +163,9 @@ public class Punto {
      * 
      * @return Cadena con el formato "(x, y)".
      */
-    public String toString() {
+    public String toString() 
+    {
+        return "(" + this.x + ", " + this.y + ")";    
     }
 
     /**
@@ -161,8 +177,21 @@ public class Punto {
      * @return true si el objeto es un Punto con coordenadas equivalentes; false en caso contrario.
      */
     @Override
-    public boolean equals(Object obj) {
-        // POR HACER: Verifica si obj es null o si no es una instancia de Punto.
-        // Compara por distancia o diferencia absoluta de coordenadas con tolerancia.
+    public boolean equals(Object obj) 
+    {
+        if (obj == null || !(obj instanceof Punto))
+        {
+            return false;
+        }
+        //comparar por distancia
+        Punto otro = (Punto) obj;
+        if (this.distancia(otro) < 0.000001) 
+        {
+            return true;
+        } 
+        else 
+        {
+            return false;
+        }
     }
 }
